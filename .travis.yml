@@ -6,7 +6,7 @@ services:
   - docker
 
 before_install:
-  - travis_wait 120 docker build -q -t matteobachetti/mserylak_pulsar_docker .
+  - docker build -t matteobachetti/mserylak_pulsar_docker . > dockerbuild.log
   - docker run -d -p 127.0.0.1:80:4567 matteobachetti/mserylak_pulsar_docker /bin/sh -c "cd /home/psr"
 
 script:
@@ -17,3 +17,6 @@ after_success:
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
     docker push matteobachetti/mserylak_pulsar_docker;
     fi
+
+after_failure:
+  - tail -200 dockerbuild.log
