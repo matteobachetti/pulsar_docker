@@ -7,7 +7,7 @@ services:
 
 before_install:
   - docker build -t matteobachetti/mserylak_pulsar_docker .
-  - docker run -d -p 127.0.0.1:80:4567 matteobachetti/mserylak_pulsar_docker /bin/sh -c "cd /home/pulsar"
+  - docker run -d -p 127.0.0.1:80:4567 matteobachetti/mserylak_pulsar_docker /bin/sh -c "cd /home/psr"
 
 script:
   - docker ps -a | grep matteobachetti/mserylak_pulsar_docker
